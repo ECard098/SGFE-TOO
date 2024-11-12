@@ -29,7 +29,7 @@ if (empty($_SESSION["id"])) {
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Reservas</a></li>
+                        <li class="nav-item"><a href="./registrar_Reservacion.php" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
@@ -95,8 +95,8 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->telefono ?></td>
                                     <td><?= $datos->direccion ?></td>
                                     <td>
-                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <a" class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
+                                        <a class="btn btn-warning" href="./modificar_cliente.php"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
                                 </tr>

@@ -13,7 +13,11 @@ if (empty($_SESSION["id"])) {
     <title>Lista de paquetes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
-    <script src="./JS/listaEliminar.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 
 </head>
 
@@ -58,13 +62,71 @@ if (empty($_SESSION["id"])) {
 
             <div div class="col-md-7 pt-5 pe-2">
                 <div class="card p-3 m-2">
-                <div class="card-header">
+                    <div class="card-header">
                         <h2 class="text-center">Reservaciones</h2>
                         <?php
                         include "../Modelo/conexion.php";
-                        include "../Controlador/personaControler.php";                       
                         ?>
                     </div>
+                    <form class="m-2 p-2" method="POST" action="">
+                        <div class="mb-2">
+                            <label class="form-label">Cliente: </label>
+                            <select class="form-select" name="cbCliente" required>
+                                <option selected>Seleccione al cliente</option>
+                                <?php
+                                include "./Modelo/conexion.php";
+                                $sql = $conexion->query("SELECT id_Cliente, CONCAT(nombre, ' ', apellido) AS nombre_completo FROM cliente");
+                                while ($datos = $sql->fetch_object()) {
+                                    echo "<option value='" . $datos->id_Cliente . "'>" . $datos->nombre_completo . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class=" mb-2">
+                            <label class="form-label">Fecha reservación: </label>
+                            <input type="date" class="form-control" name="fechaR" required>
+                        </div>
+
+                        <div class=" mb-2">
+                            <label class="form-label">Hora reservación: </label>
+                            <input type="time" class="form-control" name="horaR" required>
+                        </div>
+
+                        <div class=" mb-2">
+                            <label class="form-label">Fecha finalizacion: </label>
+                            <input type="date" class="form-control" name="fechaFinR" required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Sala: </label>
+                            <select class="form-select" name="cbSala">
+                                <option selected>Seleccione sala</option>
+                                <option value="---">---</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Paquete: </label>
+                            <select class="form-select" name="cbPaquete" required>
+                                <option selected>Seleccione el paquete</option>
+                                <?php
+                                include "./Modelo/conexion.php";
+                                $sql = $conexion->query("SELECT id_Paquete, tipoPaquete FROM paquete");
+                                while ($datos = $sql->fetch_object()) {
+                                    echo "<option value='" . $datos->id_Paquete . "'>" . $datos->tipoPaquete . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary" value="ok" name="btnRegistrarReservacion">Crear reservación</button>
+                            <a class="btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
+                        </div>
+
+                    </form>
 
                 </div>
 
@@ -109,6 +171,20 @@ if (empty($_SESSION["id"])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('select[name="cbCliente"]').select2({
+                placeholder: "Seleccione un cliente",
+                allowClear: true
+            });
+            $('select[name="cbSala"]').select2({
+                placeholder: "Seleccione una sala",
+                allowClear: true
+            });
+        });
+    </script>
 </body>
 
 </html>
