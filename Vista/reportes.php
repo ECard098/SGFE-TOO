@@ -13,17 +13,15 @@ if (empty($_SESSION["id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
-    <script src="./JS/listaEliminar.js"></script>
-
     <link rel="stylesheet" href="./CSS/reporte.css">
+    <link rel="stylesheet" href="./CSS/footer.css">
 </head>
 
-<body class="body-registro">
+<body >
     <!-- Encabezado con logo y barra de navegación -->
     <header class="bg-dark text-white p-3">
         <div class="container">
@@ -35,7 +33,8 @@ if (empty($_SESSION["id"])) {
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="./registrar_Reservacion.php" class="nav-link text-white">Reservas</a></li>
+                        <li class="nav-item"><a href="./registrar_Reservacion.php"
+                                class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
@@ -60,33 +59,33 @@ if (empty($_SESSION["id"])) {
         </div>
     </header>
     <br>
-
     <div class="container-fluid">
-        <div class="container text-center">
-            <div class="row align-items-start">
+        <div style="margin-left: 2%;" class="container-fluid">
+            <div class="row align-items-left">
                 <div class="col">
                     <form method="GET" action="">
-                        <label for="fechaInicio">Filtrar fecha de reservación:</label>
-                        <input type="date" name="fechaReservacion" id="fechaReservacion" required>
-                        <button type="submit" class="btn btn-outline-success">Filtrar</button>
+                        <label for="fechaReservacion">Fecha de Reservación:</label>
+                        <input type="date" name="fechaReservacion" id="fechaReservacion">
 
+                        <label for="numPlanPago">Plan de Pago:</label>
+                        <input type="number" name="numPlanPago" id="numPlanPago" placeholder="Número de Plan">
+
+                        <button type="submit" class="btn btn-dark">Filtrar</button>
                     </form>
                 </div>
                 <div class="col">
                     <form method="GET" action="" style="display: inline-block;">
-                        <button type="submit" class="btn btn-secondary">Quitar Filtro</button>
+                        <button type="submit" class="btn btn-dark">Quitar Filtro</button>
                     </form>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-danger" onclick="exportarPdf()" >Descargar PDF<img src="./IMG/file-earmark-arrow-down.svg" alt=""></button>
-                </div>
+
 
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
+                <div style="max-height: 600px; overflow-y: auto;">
                     <table id="reservaciones" class="table">
                         <thead>
                             <tr>
@@ -106,21 +105,37 @@ if (empty($_SESSION["id"])) {
 
                             include "../Modelo/conexion.php";
 
-                            // Verificar si se ha enviado una fecha de inicio en el formulario
+                            // Obtener los valores de los filtros
                             $fechaReservacion = isset($_GET['fechaReservacion']) ? $_GET['fechaReservacion'] : null;
+                            $numPlanPago = isset($_GET['numPlanPago']) ? $_GET['numPlanPago'] : null;
 
+                            // Construir la consulta según los filtros
+                            $query = "SELECT * FROM reservaciones WHERE 1=1"; // La condición `1=1` permite añadir filtros con `AND`
+                            $params = [];
+                            $types = "";
 
-
-                            // Construir la consulta SQL según si hay un filtro de fecha
+                            // Aplicar el filtro de fecha de reservación si se ha proporcionado
                             if ($fechaReservacion) {
-                                $sql = $conexion->prepare("SELECT * FROM reservaciones WHERE fechaReservacion = ?");
-                                $sql->bind_param("s", $fechaReservacion);
-                            } else {
-                                $sql = $conexion->prepare("SELECT * FROM reservaciones");
+                                $query .= " AND fechaReservacion = ?";
+                                $params[] = $fechaReservacion;
+                                $types .= "s"; // Tipo de dato string para fecha
                             }
 
-                            $sql->execute();
-                            $result = $sql->get_result();
+                            // Aplicar el filtro de número de plan de pago si se ha proporcionado
+                            if ($numPlanPago) {
+                                $query .= " AND idPlanPago = ?";
+                                $params[] = $numPlanPago;
+                                $types .= "i"; // Tipo de dato integer para número de plan de pago
+                            }
+
+                            // Preparar la consulta
+                            $stmt = $conexion->prepare($query);
+                            if ($params) {
+                                $stmt->bind_param($types, ...$params);
+                            }
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
 
                             // Mostrar los datos de las reservaciones
                             while ($datos = $result->fetch_object()) { ?>
@@ -139,31 +154,32 @@ if (empty($_SESSION["id"])) {
                                     </td>
                                 </tr>
                             <?php }
-                            $sql->close();
+                            $stmt->close();
                             ?>
                         </tbody>
                     </table>
+                    </div>
+
+
+
 
                 </div>
-
-
-
-
+                <button style="float: right;" type="button" class="btn btn-danger" onclick="exportarPdf()">Descargar reporte en
+                    PDF<img src="./IMG/file-earmark-arrow-down.svg" alt=""></button>
             </div>
-
-
         </div>
-
     </div>
-
+    <!-- Footer -->
+    <footer>
+        <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
+    </footer>
+    <script src="./JS/generar_reporte.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script src="./JS/generar_reporte.js"></script>
-
 </body>
 
 </html>

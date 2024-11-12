@@ -2,8 +2,8 @@ function exportarPdf() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
   
-    // Configuración del encabezado
-    doc.text("Funeraria La Esperanza", 14, 10); // Título en la parte superior
+    // Encabezado
+    doc.text("Reporte de reservaciones", 14, 10); // Título en la parte superior
     doc.setFontSize(10);
     doc.setTextColor(100);
   
@@ -19,21 +19,27 @@ function exportarPdf() {
       Array.from(tr.querySelectorAll("td")).map((td) => td.textContent)
     );
   
-    // Configuracion de la pagina
-    doc.autoTable({
-      head: [columns],
-      body: rows,
-      startY: 20, // Posición de la tabla
-      margin: { top: 5 },
-      theme: "striped", // Estilos: "striped", "grid", "plain"
-      headStyles: { fillColor: [0, 57, 107] }, // Color de fondo del encabezado
-      bodyStyles: { textColor: [0, 0, 0] }, // Color del texto del cuerpo
-      alternateRowStyles: { fillColor: [230, 240, 255] }, // Color alternado en filas
-      foot: [["Funeraria La Esperanza"]], // Pie de la tabla
-      footStyles: { fillColor: [100, 100, 100] }, // Estilo de pie de tabla
-      didDrawPage: pageContent, // Pie de página en cada página
-    });
-  
-    doc.save("Reservaciones.pdf");
-  }
-  
+    // Generar la tabla  
+  doc.autoTable({
+    head: [columns],
+    body: rows,
+    startY: 20,
+    theme: "grid",
+    headStyles: { fillColor: [0, 57, 107] },
+    bodyStyles: { textColor: [0, 0, 0] },
+    alternateRowStyles: { fillColor: [230, 240, 255] },
+   
+    styles: {
+      cellPadding: 2,  
+      fontSize: 10,   
+      lineColor: [200, 200, 200],  
+      lineWidth: 0.1,  
+    },
+    margin: { top: 20, right: 10, bottom: 10, left: 10 },
+    foot: [["Funeraria La Esperanza"]], // Pie de la tabla
+    footStyles: { fillColor: [100, 100, 100] }, 
+    didDrawPage: pageContent,  
+  });
+
+  doc.save("Reporte_Reservaciones.pdf");
+}

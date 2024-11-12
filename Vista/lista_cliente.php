@@ -14,7 +14,7 @@ if (empty($_SESSION["id"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <script src="./JS/listaEliminar.js"></script>
-
+    <link rel="stylesheet" href="./CSS/footer.css">
 </head>
 
 <body class="body-registro">
@@ -68,6 +68,7 @@ if (empty($_SESSION["id"])) {
                         <a class=" btn btn-success" href="./registrar_cliente.php" role="button">Registrar cliente</a>
                         </div>
                     </div>
+                    <div style="max-height: 500px; overflow-y: auto;">
                     <table class="table">
                         <thead class="text-center">
                             <tr>
@@ -104,7 +105,8 @@ if (empty($_SESSION["id"])) {
                             ?>
                         </tbody>
                     </table>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start"">
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
@@ -112,7 +114,10 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
-
+<!-- Footer -->
+<footer>
+        <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 </body>

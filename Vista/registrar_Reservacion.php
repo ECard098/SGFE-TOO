@@ -13,11 +13,10 @@ if (empty($_SESSION["id"])) {
     <title>Lista de paquetes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
+    <link rel="stylesheet" href="./CSS/footer.css">
 
 </head>
 
@@ -168,6 +167,10 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <footer>
+        <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
