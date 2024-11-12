@@ -31,7 +31,7 @@ if (empty($_SESSION["id"])) {
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Reportes</a></li>
+                        <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                          <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
                         </li>
                         <li class="nav-item">
@@ -106,7 +106,7 @@ if (empty($_SESSION["id"])) {
                 </div>
             </div>
         
-
+  
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 </body>

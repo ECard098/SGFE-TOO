@@ -31,7 +31,7 @@ if (empty($_SESSION["id"])) {
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
                         <li class="nav-item"><a href="./registrar_Reservacion.php" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Reportes</a></li>
+                        <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
                         </li>
                         <li class="nav-item">
@@ -64,7 +64,7 @@ if (empty($_SESSION["id"])) {
                         include "../Modelo/conexion.php";
                         include "../Controlador/eliminarPersona.php";
                         ?>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end"">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a class=" btn btn-success" href="./registrar_cliente.php" role="button">Registrar cliente</a>
                         </div>
                     </div>
