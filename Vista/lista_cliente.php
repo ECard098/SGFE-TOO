@@ -96,7 +96,7 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->telefono ?></td>
                                     <td><?= $datos->direccion ?></td>
                                     <td>
-                                        <a class="btn btn-warning" href="./modificar_cliente.php"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning" href="./modificar_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
