@@ -84,19 +84,17 @@ if (empty($_SESSION["id"])) {
 
                         <div class=" mb-2">
                             <label class="form-label">Fecha reservación: </label>
-                            <input type="date" class="form-control" name="fechaR" required>
+                            <input type="date" class="form-control" name="fechaR" id="fechaR" required disabled>
                         </div>
 
                         <div class=" mb-2">
-                            <label class="form-label">Hora reservación: </label>
-                            <input type="time" class="form-control" name="horaR" required>
+                            <label class="form-label">Fecha inicio</label>
+                            <input type="date" class="form-control" name="fechaIniR" required>
                         </div>
-
                         <div class=" mb-2">
-                            <label class="form-label">Fecha finalizacion: </label>
+                            <label class="form-label">Fecha finalización</label>
                             <input type="date" class="form-control" name="fechaFinR" required>
                         </div>
-
                         <div class="mb-2">
                             <label class="form-label">Sala: </label>
                             <select class="form-select" name="cbSala">
@@ -173,21 +171,10 @@ if (empty($_SESSION["id"])) {
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 
-
-    <script>
-        $(document).ready(function() {
-            $('select[name="cbCliente"]').select2({
-                placeholder: "Seleccione un cliente",
-                allowClear: true
-            });
-            $('select[name="cbSala"]').select2({
-                placeholder: "Seleccione una sala",
-                allowClear: true
-            });
-        });
-    </script>
+   <script src="../Vista/JS/script_reservacion.js"></script>
 </body>
 
 </html>
