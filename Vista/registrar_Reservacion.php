@@ -32,7 +32,7 @@ if (empty($_SESSION["id"])) {
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Reservas</a></li>
+                        <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
@@ -117,6 +117,20 @@ if (empty($_SESSION["id"])) {
                                 ?>
                             </select>
                         </div>
+                        
+                        <div class="mb-2">
+                            <label class="form-label">Tipo plan: </label>
+                            <select class="form-select" name="cbPlan" required>
+                                <option selected>Seleccione el plan</option>
+                                <?php
+                                include "./Modelo/conexion.php";
+                                $sql = $conexion->query("SELECT id_PlanPago, tipoPago FROM planpago");
+                                while ($datos = $sql->fetch_object()) {
+                                    echo "<option value='" . $datos->id_PlanPago . "'>" . $datos->tipoPago . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-primary" value="ok" name="btnRegistrarReservacion">Crear reservación</button>
@@ -160,9 +174,38 @@ if (empty($_SESSION["id"])) {
                             ?>
                         </tbody>
                     </table>
+                    <div>
+                        <div class="card-header">
+                            <h2>Lista de Planes Pago</h2>
+                        </div>
+                        <table class="table">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Tipo pago</th>
+                                </tr>
+                            </thead>
+                            <tbody class="p-1 text-center">
+                                <?php
+                                include "../Modelo/conexion.php";
+                                $sql = $conexion->query("select * from planpago");
+                                while ($datos = $sql->fetch_Object()) { ?>
+                                    <tr>
+                                        <th scope="row"><?= $datos->id_PlanPago ?></th>
+                                        <td><?= $datos->descripcion ?></td>
+                                        <td><?= $datos->tipoPago ?></td>
+                                    </tr>
+                                <?php }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
             </div>
+
         </div>
     </div>
     <!-- Footer -->
@@ -174,7 +217,7 @@ if (empty($_SESSION["id"])) {
 
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 
-   <script src="../Vista/JS/script_reservacion.js"></script>
+    <script src="../Vista/JS/script_reservacion.js"></script>
 </body>
 
 </html>

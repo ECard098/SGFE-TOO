@@ -10,7 +10,7 @@ if (empty($_SESSION["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro cliente</title>
+    <title>Lista Reservaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <script src="./JS/listaEliminar.js"></script>
@@ -59,13 +59,12 @@ if (empty($_SESSION["id"])) {
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
-                        <h2>Lista de cliente</h2>
+                        <h2>Lista de reservaciones </h2>
                         <?php
                         include "../Modelo/conexion.php";
-                        include "../Controlador/eliminarPersona.php";
                         ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class=" btn btn-success" href="./registrar_cliente.php" role="button">Registrar cliente</a>
+                        <a class=" btn btn-success" href="./registrar_Reservacion.php" role="button">Crear reservación</a>
                         </div>
                     </div>
                     <div style="max-height: 500px; overflow-y: auto;">
@@ -73,31 +72,34 @@ if (empty($_SESSION["id"])) {
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Fecha Nacimiento</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Acción</th>
+                                <th scope="col">Fecha reservacion</th>
+                                <th scope="col">Fecha inicio</th>
+                                <th scope="col">Fecha fin</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Paquete</th>
+                                <th scope="col">Sala</th>
+                                <th scope="col">Plan pago</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="p-1">
                             <?php
                             include "../Modelo/conexion.php";
-                            $sql = $conexion->query("select * from cliente");
+                            $sql = $conexion->query("select * from reservaciones");
                             while ($datos = $sql->fetch_Object()) { ?>
                                 <tr>
-                                    <th scope="row"><?= $datos->id_Cliente ?></th>
-                                    <td><?= $datos->nombre ?></td>
-                                    <td><?= $datos->apellido ?></td>
-                                    <td><?= $datos->correo ?></td>
-                                    <td><?= $datos->fecha_Nacimiento ?></td>
-                                    <td><?= $datos->telefono ?></td>
-                                    <td><?= $datos->direccion ?></td>
+                                    <th scope="row"><?= $datos->id_Reservacion ?></th>
+                                    <td><?= $datos->fechaReservacion ?></td>
+                                    <td><?= $datos->fechaInicio ?></td>
+                                    <td><?= $datos->fechaFin ?></td>
+                                    <td><?= $datos->id_Cliente ?></td>
+                                    <td><?= $datos->id_Paquete ?></td>
+                                    <td><?= $datos->id_Sala ?></td>
+                                    <td><?= $datos->id_PlanPago ?></td>
+                                    
                                     <td>
-                                        <a class="btn btn-warning" href="./modificar_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <a class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
+                                        <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
                                 </tr>
