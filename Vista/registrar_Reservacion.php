@@ -55,9 +55,9 @@ if (empty($_SESSION["id"])) {
         </div>
     </header>
 
-    <div class="container-fluid">
+    <div  class="container-fluid">
 
-        <div class="row">
+        <div style="min-height: 100vh" class="row">
 
             <div div class="col-md-7 pt-5 pe-2">
                 <div class="card p-3 m-2">

@@ -1,17 +1,9 @@
-body, html {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
- 
-
-footer {
-    position: relative;
+ footer {
+    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #343a40;
     color: white;
     text-align: center;
-    padding: 1rem 0;
+    
 }
