@@ -20,7 +20,7 @@ if (empty($_SESSION["id"])) {
     <link rel="stylesheet" href="./CSS/footer.css">
 </head>
 
-<bod>
+<body>
     <!-- Encabezado con logo y barra de navegación -->
     <header class="bg-dark text-white p-3">
         <div class="container">
@@ -31,8 +31,8 @@ if (empty($_SESSION["id"])) {
                 <nav>
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="./registrar_Reservacion.php"
+                        <li class="nav-item"><a href="./lista_sala.php" class="nav-link text-white">Salas</a></li>
+                        <li class="nav-item"><a href="./lista_reservacion.php"
                                 class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
@@ -174,6 +174,7 @@ if (empty($_SESSION["id"])) {
     <footer>
         <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
     </footer>
+
     <script src="./JS/generar_reporte.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

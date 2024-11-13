@@ -32,7 +32,7 @@ if (empty($_SESSION["id"])) {
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Reservas</a></li>
+                        <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
@@ -84,19 +84,17 @@ if (empty($_SESSION["id"])) {
 
                         <div class=" mb-2">
                             <label class="form-label">Fecha reservación: </label>
-                            <input type="date" class="form-control" name="fechaR" required>
+                            <input type="date" class="form-control" name="fechaR" id="fechaR" required disabled>
                         </div>
 
                         <div class=" mb-2">
-                            <label class="form-label">Hora reservación: </label>
-                            <input type="time" class="form-control" name="horaR" required>
+                            <label class="form-label">Fecha inicio</label>
+                            <input type="date" class="form-control" name="fechaIniR" required>
                         </div>
-
                         <div class=" mb-2">
-                            <label class="form-label">Fecha finalizacion: </label>
+                            <label class="form-label">Fecha finalización</label>
                             <input type="date" class="form-control" name="fechaFinR" required>
                         </div>
-
                         <div class="mb-2">
                             <label class="form-label">Sala: </label>
                             <select class="form-select" name="cbSala">
@@ -115,6 +113,20 @@ if (empty($_SESSION["id"])) {
                                 $sql = $conexion->query("SELECT id_Paquete, tipoPaquete FROM paquete");
                                 while ($datos = $sql->fetch_object()) {
                                     echo "<option value='" . $datos->id_Paquete . "'>" . $datos->tipoPaquete . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <label class="form-label">Tipo plan: </label>
+                            <select class="form-select" name="cbPlan" required>
+                                <option selected>Seleccione el plan</option>
+                                <?php
+                                include "./Modelo/conexion.php";
+                                $sql = $conexion->query("SELECT id_PlanPago, tipoPago FROM planpago");
+                                while ($datos = $sql->fetch_object()) {
+                                    echo "<option value='" . $datos->id_PlanPago . "'>" . $datos->tipoPago . "</option>";
                                 }
                                 ?>
                             </select>
@@ -162,9 +174,38 @@ if (empty($_SESSION["id"])) {
                             ?>
                         </tbody>
                     </table>
+                    <div>
+                        <div class="card-header">
+                            <h2>Lista de Planes Pago</h2>
+                        </div>
+                        <table class="table">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Tipo pago</th>
+                                </tr>
+                            </thead>
+                            <tbody class="p-1 text-center">
+                                <?php
+                                include "../Modelo/conexion.php";
+                                $sql = $conexion->query("select * from planpago");
+                                while ($datos = $sql->fetch_Object()) { ?>
+                                    <tr>
+                                        <th scope="row"><?= $datos->id_PlanPago ?></th>
+                                        <td><?= $datos->descripcion ?></td>
+                                        <td><?= $datos->tipoPago ?></td>
+                                    </tr>
+                                <?php }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
             </div>
+
         </div>
     </div>
     <!-- Footer -->
@@ -173,21 +214,10 @@ if (empty($_SESSION["id"])) {
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 
-
-    <script>
-        $(document).ready(function() {
-            $('select[name="cbCliente"]').select2({
-                placeholder: "Seleccione un cliente",
-                allowClear: true
-            });
-            $('select[name="cbSala"]').select2({
-                placeholder: "Seleccione una sala",
-                allowClear: true
-            });
-        });
-    </script>
+    <script src="../Vista/JS/script_reservacion.js"></script>
 </body>
 
 </html>

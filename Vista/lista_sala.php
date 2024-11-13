@@ -10,11 +10,11 @@ if (empty($_SESSION["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro cliente</title>
+    <title>Lista de Salas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <script src="./JS/listaEliminar.js"></script>
-    <link rel="stylesheet" href="./CSS/footer.css">
+
 </head>
 
 <body class="body-registro">
@@ -59,65 +59,53 @@ if (empty($_SESSION["id"])) {
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
-                        <h2>Lista de cliente</h2>
+                        <h2>Lista de Salas</h2>
                         <?php
                         include "../Modelo/conexion.php";
-                        include "../Controlador/eliminarPersona.php";
+                        include "../Controlador/eliminarSala.php";
                         ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class=" btn btn-success" href="./registrar_cliente.php" role="button">Registrar cliente</a>
+                            <a class=" btn btn-success" href="./registrar_sala.php" role="button">Registrar Sala</a>
                         </div>
                     </div>
-                    <div style="max-height: 500px; overflow-y: auto;">
                     <table class="table">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Fecha Nacimiento</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Dirección</th>
+                                <th scope="col">Id Sala</th>
+                                <th scope="col">Nombre Sala</th>
+                                <th scope="col">Capacidad</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody class="p-1">
                             <?php
                             include "../Modelo/conexion.php";
-                            $sql = $conexion->query("select * from cliente");
+                            $sql = $conexion->query("select * from sala");
                             while ($datos = $sql->fetch_Object()) { ?>
                                 <tr>
-                                    <th scope="row"><?= $datos->id_Cliente ?></th>
-                                    <td><?= $datos->nombre ?></td>
-                                    <td><?= $datos->apellido ?></td>
-                                    <td><?= $datos->correo ?></td>
-                                    <td><?= $datos->fecha_Nacimiento ?></td>
-                                    <td><?= $datos->telefono ?></td>
-                                    <td><?= $datos->direccion ?></td>
+                                    <th scope="row"><?= $datos->id_Sala ?></th>
+                                    <td><?= $datos->nombreSala ?></td>
+                                    <td><?= $datos->capacidad ?></td>
+                                    <td><?= $datos->estadoSala ?></td>
                                     <td>
-                                        <a class="btn btn-warning" href="./modificar_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <a class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
-
+                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-danger" href="./lista_sala.php?id=<?= $datos->id_Sala ?>"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php }
                             ?>
                         </tbody>
                     </table>
-                    </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
+                        <a class="btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-<!-- Footer -->
-<footer>
-        <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
-    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 </body>
