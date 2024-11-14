@@ -36,7 +36,7 @@ if (empty($_SESSION["id"])) {
                                 class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
+                        <li class="nav-item"><a href="./lista_expediente.php" class="nav-link text-white">Expediente</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">

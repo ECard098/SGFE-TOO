@@ -155,7 +155,7 @@ if (empty($_SESSION["id"])) {
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-success" value="ok"
                                 name="btnRegistrarReservacion">Crear reservación</button>
-                            <a class="btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
+                            <a class="btn btn-dark" href="./lista_reservacion.php" role="button">Volver al listado</a>
                         </div>
 
                     </form>

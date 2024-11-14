@@ -10,7 +10,7 @@ if (empty($_SESSION["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro cliente</title>
+    <title>Expediente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/footer.css">
     <script src="./JS/listaEliminar.js"></script>
@@ -59,47 +59,34 @@ if (empty($_SESSION["id"])) {
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
-                        <h2>Lista de cliente</h2>
+                        <h2>Expediente cliente</h2>
                         <?php
                         include "../Modelo/conexion.php";
-                        include "../Controlador/eliminarPersona.php";
                         ?>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a class=" btn btn-success" href="./registrar_cliente.php" role="button">Registrar cliente</a>
-                        </div>
+
                     </div>
                     <div style="max-height: 500px; overflow-y: auto;">
                         <table class="table">
                             <thead class="text-left">
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Fecha Nacimiento</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Dirección</th>
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">Nombre cliente</th>
+                                    <th scope="col">Tipo paquete</th>
+                                    <th scope="col">Sala reservada</th>
+                                    <th scope="col">Forma de pago</th>
+                                    <th scope="col">Fecha de reservación</th>
                                 </tr>
                             </thead>
                             <tbody class="p-1">
                                 <?php
                                 include "../Modelo/conexion.php";
-                                $sql = $conexion->query("select * from cliente");
+                                $sql = $conexion->query("select concat(c.nombre, ' ' ,c.apellido) AS nombreC, p.tipoPaquete AS nPaquete, pp.tipoPago as Tpago, r.fechaReservacion AS fReservacion, s.nombreSala as nSala from reservaciones r join cliente c on r.id_Cliente = c.id_Cliente join paquete p on r.id_Paquete = p.id_Paquete join planPago pp on r.id_PlanPago = pp.id_PlanPago join sala s on r.id_Sala = s.id_Sala ");
                                 while ($datos = $sql->fetch_Object()) { ?>
                                     <tr>
-                                        <th scope="row"><?= $datos->id_Cliente ?></th>
-                                        <td><?= $datos->nombre ?></td>
-                                        <td><?= $datos->apellido ?></td>
-                                        <td><?= $datos->correo ?></td>
-                                        <td><?= $datos->fecha_Nacimiento ?></td>
-                                        <td><?= $datos->telefono ?></td>
-                                        <td><?= $datos->direccion ?></td>
-                                        <td>
-                                            <a class="btn btn-warning" href="./modificar_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                                            <a class="btn btn-danger" href="./lista_cliente.php?id=<?= $datos->id_Cliente ?>"><i class="fa-solid fa-trash"></i></a>
-
-                                        </td>
+                                        <th><?= $datos->nombreC ?></th>
+                                        <td><?= $datos->nPaquete ?></td>
+                                        <td><?= $datos->nSala ?></td>
+                                        <td><?= $datos->Tpago ?></td>
+                                        <td><?= $datos->fReservacion ?></td>
                                     </tr>
                                 <?php }
                                 ?>
