@@ -107,7 +107,7 @@ if (empty($_SESSION["id"])) {
                         </table>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a class=" btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
+                        <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
                 </div>

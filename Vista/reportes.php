@@ -96,7 +96,7 @@ if (empty($_SESSION["id"])) {
                                     <th scope="col">Número de sala</th>
                                     <th scope="col">Número de Cliente</th>
                                     <th scope="col">Número de Paquete</th>
-                                    <th scope="col">Acciones</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody class="p-1">
@@ -147,11 +147,7 @@ if (empty($_SESSION["id"])) {
                                         <td><?= $datos->id_Sala ?></td>
                                         <td><?= $datos->id_Cliente ?></td>
                                         <td><?= $datos->id_Paquete ?></td>
-                                        <td>
-                                            <a class="btn btn-warning" href="#"><i
-                                                    class="fa-regular fa-pen-to-square"></i></a>
-                                            <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a>
-                                        </td>
+                                        
                                     </tr>
                                 <?php }
                                 $stmt->close();

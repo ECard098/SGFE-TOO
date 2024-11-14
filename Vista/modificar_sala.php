@@ -91,8 +91,8 @@ $sql = $conexion->query("select * from sala where id_Sala = $id");
                     ?>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary" value="ok" name="btnModificarSala">Modificar Sala</button>
-                        <a class="btn btn-secondary" href="./lista_sala.php" role="button">Volver al listado</a>
+                        <button type="submit" class="btn btn-success" value="ok" name="btnModificarSala">Modificar Sala</button>
+                        <a class="btn btn-dark" href="./lista_sala.php" role="button">Volver al listado</a>
                     </div>
 
                 </form>

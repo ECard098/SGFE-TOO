@@ -16,7 +16,7 @@ if (empty($_SESSION["id"])) {
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <script src="./JS/listaEliminar.js"></script>
     <link rel="stylesheet" href="./CSS/footer.css">
-  
+
 </head>
 
 <body class="body-registro">
@@ -57,9 +57,12 @@ if (empty($_SESSION["id"])) {
         </div>
     </header>
 
-    <div style= "flex: 1;"class="container-fluid">
+    <div class="container-fluid">
 
-        <div  class="row">
+        <div class="row">
+
+
+
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
@@ -113,13 +116,8 @@ if (empty($_SESSION["id"])) {
                                 $sql->bind_param("s", $estadoSeleccionado);
                             } else {
                                 $sql = $conexion->prepare("SELECT * FROM sala");
-                            }
-
-                            
+                            }           
                             $sql->execute();
-
-
-
                             $result = $sql->get_result();
 
                             while ($datos = $result->fetch_Object()) { ?>
@@ -129,7 +127,7 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->capacidad ?></td>
                                     <td><?= $datos->estadoSala ?></td>
                                     <td>
-                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning" href="./modificar_sala.php?id=<?= $datos->id_Sala ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a class="btn btn-danger" href="./lista_sala.php?id=<?= $datos->id_Sala ?>"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>

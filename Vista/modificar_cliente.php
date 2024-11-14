@@ -108,8 +108,8 @@ $sql = $conexion->query("select * from cliente where id_Cliente = $id");
                     ?>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary" value="ok" name="btnRegistrar">Modificar cliente</button>
-                        <a class="btn btn-secondary" href="./lista_cliente.php" role="button">Volver al listado</a>
+                        <button type="submit" class="btn btn-success" value="ok" name="btnRegistrar">Modificar cliente</button>
+                        <a class="btn btn-dark" href="./lista_cliente.php" role="button">Volver al listado</a>
                     </div>
 
                 </form>

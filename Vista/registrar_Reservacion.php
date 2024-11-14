@@ -18,8 +18,6 @@ if (empty($_SESSION["id"])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="./CSS/footer.css">
-    <link rel="stylesheet" href="./CSS/modal.css">
-    
 
 </head>
 
@@ -77,7 +75,6 @@ if (empty($_SESSION["id"])) {
                     <form class="m-2 p-2" method="POST" action="">
                         <div class="mb-2">
                             <label class="form-label">Cliente: </label>
-                            <select id="cbCliente" class="form-select" name="cbCliente" required>
                             <select class="form-select" name="cbCliente" required id="clienteSelect" required onchange="updateCliente()">
                                 <option selected>Seleccione al cliente</option>
                                 <?php
@@ -141,12 +138,8 @@ if (empty($_SESSION["id"])) {
                         <input type="hidden" id="planPaquete" name="planPaquete">
 
                         <div class="mb-2">
-                        <form class="m-2 p-2" method="POST" action="">
-                        <!-- Otros campos del formulario omitidos por brevedad -->
-
-                        <div class="mb-2">
                             <label class="form-label">Tipo plan: </label>
-                            <select class="form-select" name="cbPlan" id="cbPlan" required>
+                            <select class="form-select" name="cbPlan" id="cbPlan" required onchange="updatePlanId()">
                                 <option selected>Seleccione el plan</option>
                                 <?php
                                 include "./Modelo/conexion.php";
@@ -160,13 +153,10 @@ if (empty($_SESSION["id"])) {
                         <input type="hidden" id="planId" name="planId">
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-success" value="ok" name="btnRegistrarReservacion">Crear reservación</button>
-                            <a class="btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
+                            <button type="submit" class="btn btn-success" value="ok"
+                                name="btnRegistrarReservacion">Crear reservación</button>
+                            <a class="btn btn-dark" href="./lista_reservacion.php" role="button">Volver al listado</a>
                         </div>
-                    </form>
-                        </div>
-
-                       
 
                     </form>
 
@@ -174,31 +164,7 @@ if (empty($_SESSION["id"])) {
 
             </div>
 
-             <!-- Modal de Pago con Tarjeta -->
-    <div id="paymentModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">X</span>
-            <h2>Confirma el metodo de pago</h2>
-<div class="row">
-<div class="col">
-            <img src="./IMG/Visa_Logo.png" width="50" height="35" alt="">
-            </div>
-            <div class="col">
-            <img src="./IMG/MasterCard_Logo.png" width="60" height="45" alt="">
-            </div>
-</div>
-            
-            
-            <br>
-            <form id="paymentForm" action="procesar_pago.php" method="POST">
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre en la tarjeta" required class="form-control mb-2">
-                <input type="text" name="tarjeta" placeholder="Número de tarjeta" required class="form-control mb-2">
-                 
-                <button type="submit" class="btn btn-success">Realizar Pago</button>
-            </form>
-        </div>
-    </div>
-   <div class="col-md-5 pt-5">
+            <div class="col-md-5 pt-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
 
@@ -263,7 +229,6 @@ if (empty($_SESSION["id"])) {
 
         </div>
     </div>
-    
     <!-- Footer -->
     <footer>
         <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
@@ -276,7 +241,7 @@ if (empty($_SESSION["id"])) {
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 
     <script src="../Vista/JS/script_reservacion.js"></script>
-    <script src="./JS/pago_tarjeta.js"></script>
+    <script src="../Vista/JS/ids.js"></script>
 </body>
 
 </html>
