@@ -98,8 +98,8 @@ if (empty($_SESSION["id"])) {
                             <input type="text" class="form-control" name="direccionC" placeholder="Ingresa dirección cliente" required>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary" value="ok" name="btnRegistrar">Crear cliente</button>
-                            <a class="btn btn-secondary" href="./lista_cliente.php" role="button">Volver al listado</a>
+                            <button type="submit" class="btn btn-success" value="ok" name="btnRegistrar">Crear cliente</button>
+                            <a class="btn btn-dark" href="./lista_cliente.php" role="button">Volver al listado</a>
                         </div>
 
                     </form>
