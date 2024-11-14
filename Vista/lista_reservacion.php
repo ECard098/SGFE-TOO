@@ -88,14 +88,14 @@ if (empty($_SESSION["id"])) {
                             $sql = $conexion->query("select * from reservaciones");
                             while ($datos = $sql->fetch_Object()) { ?>
                                 <tr>
-                                    <th scope="row"><?= $datos->idReservacion ?></th>
+                                    <th scope="row"><?= $datos->id_Reservacion ?></th>
                                     <td><?= $datos->fechaReservacion ?></td>
                                     <td><?= $datos->fechaInicio ?></td>
                                     <td><?= $datos->fechaFin ?></td>
-                                    <td><?= $datos->idCliente ?></td>
-                                    <td><?= $datos->idPaquete ?></td>
-                                    <td><?= $datos->idSala ?></td>
-                                    <td><?= $datos->idPlanPago ?></td>
+                                    <td><?= $datos->id_Cliente ?></td>
+                                    <td><?= $datos->id_Paquete ?></td>
+                                    <td><?= $datos->id_Sala ?></td>
+                                    <td><?= $datos->id_PlanPago ?></td>
                                     
                                     <td>
                                         <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>

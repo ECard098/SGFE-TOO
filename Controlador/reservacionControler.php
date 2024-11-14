@@ -14,7 +14,7 @@ if (!empty($_POST["btnRegistrarReservacion"])) {
 
         //Modificar luego la tabla de reservaciones por los datos erroneos
 
-        $sql = $conexion->query("INSERT INTO reservaciones(fechaReservacion, fechaInicio, fechaFin, idPlanPago, idSala, idCliente, idPaquete) VALUES('$fechaReservacion', '$fechaInicio', '$fechaFin', '$IdPlan', '$IdSala', '$IdCliente', '$IdPaquete')");
+        $sql = $conexion->query("INSERT INTO reservaciones(fechaReservacion, fechaInicio, fechaFin, id_PlanPago, id_Sala, id_Cliente, id_Paquete) VALUES('$fechaReservacion', '$fechaInicio', '$fechaFin', '$IdPlan', '$IdSala', '$IdCliente', '$IdPaquete')");
 
         if ($sql) {
             echo '<div class="alert alert-success">Reservación registrada correctamente</div>';
