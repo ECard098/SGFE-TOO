@@ -139,14 +139,14 @@ if (empty($_SESSION["id"])) {
                                 // Mostrar los datos de las reservaciones
                                 while ($datos = $result->fetch_object()) { ?>
                                     <tr>
-                                        <td scope="row"><?= $datos->idReservacion ?></td>
+                                        <td scope="row"><?= $datos->id_Reservacion ?></td>
                                         <td><?= $datos->fechaReservacion ?></td>
                                         <td><?= $datos->fechaInicio ?></td>
                                         <td><?= $datos->fechaFin ?></td>
-                                        <td><?= $datos->idPlanPago ?></td>
-                                        <td><?= $datos->idSala ?></td>
-                                        <td><?= $datos->idCliente ?></td>
-                                        <td><?= $datos->idPaquete ?></td>
+                                        <td><?= $datos->id_PlanPago ?></td>
+                                        <td><?= $datos->id_Sala ?></td>
+                                        <td><?= $datos->id_Cliente ?></td>
+                                        <td><?= $datos->id_Paquete ?></td>
                                         <td>
                                             <a class="btn btn-warning" href="#"><i
                                                     class="fa-regular fa-pen-to-square"></i></a>

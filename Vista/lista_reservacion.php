@@ -98,7 +98,7 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->id_PlanPago ?></td>
                                     
                                     <td>
-                                        <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
