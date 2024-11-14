@@ -66,7 +66,7 @@ $sql = $conexion->query("select * from cliente where id_Cliente = $id");
                     <h2 class="text-center">Editar cliente</h2>
                 </div>
                 <form class="m-3 p-3" method="POST" action="">
-                    <input type="hidden" name="id" value="<?=$_GET["id"]?>">
+                    <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
                     <?php
                     include "../Controlador/modificarPersona.php";
                     while ($datos = $sql->fetch_Object()) { ?>

@@ -116,13 +116,8 @@ if (empty($_SESSION["id"])) {
                                 $sql->bind_param("s", $estadoSeleccionado);
                             } else {
                                 $sql = $conexion->prepare("SELECT * FROM sala");
-                            }
-
-                            
+                            }           
                             $sql->execute();
-
-
-
                             $result = $sql->get_result();
 
                             while ($datos = $result->fetch_Object()) { ?>
@@ -132,7 +127,7 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->capacidad ?></td>
                                     <td><?= $datos->estadoSala ?></td>
                                     <td>
-                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning" href="./modificar_sala.php?id=<?= $datos->id_Sala ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a class="btn btn-danger" href="./lista_sala.php?id=<?= $datos->id_Sala ?>"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>
