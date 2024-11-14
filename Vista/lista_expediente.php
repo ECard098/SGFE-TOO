@@ -10,11 +10,11 @@ if (empty($_SESSION["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Reservaciones</title>
+    <title>Expediente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
+    <link rel="stylesheet" href="../Vista/CSS/footer.css">
     <script src="./JS/listaEliminar.js"></script>
-    <link rel="stylesheet" href="./CSS/footer.css">
+
 </head>
 
 <body class="body-registro">
@@ -32,7 +32,7 @@ if (empty($_SESSION["id"])) {
                         <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
+                        <li class="nav-item"><a href="./lista_expediente.php" class="nav-link text-white">Expediente</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
@@ -59,65 +59,50 @@ if (empty($_SESSION["id"])) {
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
-                        <h2>Lista de reservaciones </h2>
+                        <h2>Expediente cliente</h2>
                         <?php
                         include "../Modelo/conexion.php";
                         ?>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class=" btn btn-success" href="./registrar_Reservacion.php" role="button">Crear reservación</a>
-                        </div>
+
                     </div>
                     <div style="max-height: 500px; overflow-y: auto;">
-                    <table class="table">
-                        <thead class="text-left">
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Fecha reservacion</th>
-                                <th scope="col">Fecha inicio</th>
-                                <th scope="col">Fecha fin</th>
-                                <th scope="col">Cliente</th>
-                                <th scope="col">Paquete</th>
-                                <th scope="col">Sala</th>
-                                <th scope="col">Plan pago</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="p-1">
-                            <?php
-                            include "../Modelo/conexion.php";
-                            $sql = $conexion->query("select * from reservaciones");
-                            while ($datos = $sql->fetch_Object()) { ?>
+                        <table class="table">
+                            <thead class="text-left">
                                 <tr>
-                                    <th scope="row"><?= $datos->id_Reservacion ?></th>
-                                    <td><?= $datos->fechaReservacion ?></td>
-                                    <td><?= $datos->fechaInicio ?></td>
-                                    <td><?= $datos->fechaFin ?></td>
-                                    <td><?= $datos->id_Cliente ?></td>
-                                    <td><?= $datos->id_Paquete ?></td>
-                                    <td><?= $datos->id_Sala ?></td>
-                                    <td><?= $datos->id_PlanPago ?></td>
-                                    
-                                    <td>
-                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a>
-
-                                    </td>
+                                    <th scope="col">Nombre cliente</th>
+                                    <th scope="col">Tipo paquete</th>
+                                    <th scope="col">Sala reservada</th>
+                                    <th scope="col">Forma de pago</th>
+                                    <th scope="col">Fecha de reservación</th>
                                 </tr>
-                            <?php }
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="p-1">
+                                <?php
+                                include "../Modelo/conexion.php";
+                                $sql = $conexion->query("select concat(c.nombre, ' ' ,c.apellido) AS nombreC, p.tipoPaquete AS nPaquete, pp.tipoPago as Tpago, r.fechaReservacion AS fReservacion, s.nombreSala as nSala from reservaciones r join cliente c on r.id_Cliente = c.id_Cliente join paquete p on r.id_Paquete = p.id_Paquete join planPago pp on r.id_PlanPago = pp.id_PlanPago join sala s on r.id_Sala = s.id_Sala ");
+                                while ($datos = $sql->fetch_Object()) { ?>
+                                    <tr>
+                                        <th><?= $datos->nombreC ?></th>
+                                        <td><?= $datos->nPaquete ?></td>
+                                        <td><?= $datos->nSala ?></td>
+                                        <td><?= $datos->Tpago ?></td>
+                                        <td><?= $datos->fReservacion ?></td>
+                                    </tr>
+                                <?php }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class=" btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
+                        <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
-<!-- Footer -->
-<footer>
+    <!-- Footer -->
+    <footer>
         <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

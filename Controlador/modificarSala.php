@@ -13,7 +13,7 @@ if (!empty($_POST['btnModificarSala'])) {
             echo '<div class="alert alert-success">Sala modificada correctamente</div>';
             header("location: lista_sala.php");
         } else {
-            echo "<div alert alert-danger>Campos vacios</div>";
+            echo '<div class="alert alert-danger">Campos vacios</div>';
         }
     }
 }

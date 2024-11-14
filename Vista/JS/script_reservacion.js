@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     fechaInput.value = formattedDate;
-    fechaInput.disabled = true;
+    fechaInput.disabled = false;
 });
 
 // Inicializar select2 para selectores específicos
@@ -18,3 +18,4 @@ $(document).ready(function() {
         allowClear: true
     });
 });
+
