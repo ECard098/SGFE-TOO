@@ -55,7 +55,7 @@ if (empty($_SESSION["id"])) {
             <div class="col-md-12 p-5">
                 <div class="card p-3 m-2">
                     <div class="card-header">
-                        <h2 class="text-center">Registro Sala</h2>
+                        <h2 class="text-left">Registro Sala</h2>
                         <?php
                         include "../Modelo/conexion.php";
                         include "../Controlador/salaControler.php"; // Incluir el controlador de sala que manejará la inserción
@@ -76,7 +76,7 @@ if (empty($_SESSION["id"])) {
                             <select class="form-select" name="estadoSala" aria-label="Elige estado de la sala">
                                 <option selected>Seleccione opción</option>
                                 <option value="disponible">Disponible</option>
-                                <option value="ocupado">Ocupada</option>
+                                <option value="Ocupada">Ocupada</option>
                                 <option value="mantenimiento">En mantenimiento</option>
                             </select>
                         </div>

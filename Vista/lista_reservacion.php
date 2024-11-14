@@ -69,7 +69,7 @@ if (empty($_SESSION["id"])) {
                     </div>
                     <div style="max-height: 500px; overflow-y: auto;">
                     <table class="table">
-                        <thead class="text-center">
+                        <thead class="text-left">
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Fecha reservacion</th>
@@ -88,14 +88,14 @@ if (empty($_SESSION["id"])) {
                             $sql = $conexion->query("select * from reservaciones");
                             while ($datos = $sql->fetch_Object()) { ?>
                                 <tr>
-                                    <th scope="row"><?= $datos->id_Reservacion ?></th>
+                                    <th scope="row"><?= $datos->idReservacion ?></th>
                                     <td><?= $datos->fechaReservacion ?></td>
                                     <td><?= $datos->fechaInicio ?></td>
                                     <td><?= $datos->fechaFin ?></td>
-                                    <td><?= $datos->id_Cliente ?></td>
-                                    <td><?= $datos->id_Paquete ?></td>
-                                    <td><?= $datos->id_Sala ?></td>
-                                    <td><?= $datos->id_PlanPago ?></td>
+                                    <td><?= $datos->idCliente ?></td>
+                                    <td><?= $datos->idPaquete ?></td>
+                                    <td><?= $datos->idSala ?></td>
+                                    <td><?= $datos->idPlanPago ?></td>
                                     
                                     <td>
                                         <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>
@@ -109,7 +109,7 @@ if (empty($_SESSION["id"])) {
                     </table>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
+                    <a class=" btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
                 </div>

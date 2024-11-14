@@ -11,7 +11,8 @@ if (empty($_SESSION["id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de paquetes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -23,7 +24,7 @@ if (empty($_SESSION["id"])) {
 <body class="body-registro">
     <!-- Encabezado con logo y barra de navegación -->
     <header class="bg-dark text-white p-3">
-        <div class="container">
+        <div  class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="h3">
                     <a class="nav-link text-white" href="./principal.php">Funeraria La Esperanza</a>
@@ -31,21 +32,24 @@ if (empty($_SESSION["id"])) {
                 <nav>
                     <ul class="nav">
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
-                        <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
+                        <li class="nav-item"><a href="./lista_sala.php" class="nav-link text-white">Salas</a></li>
+                        <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a>
+                        </li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <?php
                                     echo $_SESSION["nombre"] . " - " . $_SESSION["correo"];
                                     ?>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../Controlador/cerrarControler.php">Cerrar sesión</a></li>
+                                    <li><a class="dropdown-item" href="../Controlador/cerrarControler.php">Cerrar
+                                            sesión</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -55,9 +59,9 @@ if (empty($_SESSION["id"])) {
         </div>
     </header>
 
-    <div  class="container-fluid">
+    <div class="container-fluid">
 
-        <div style="min-height: 100vh" class="row">
+        <div  class="row">
 
             <div div class="col-md-7 pt-5 pe-2">
                 <div class="card p-3 m-2">
@@ -97,10 +101,21 @@ if (empty($_SESSION["id"])) {
                         </div>
                         <div class="mb-2">
                             <label class="form-label">Sala: </label>
-                            <select class="form-select" name="cbSala">
-                                <option selected>Seleccione sala</option>
-                                <option value="---">---</option>
+                            <?php
+                            include "../Modelo/conexion.php";
 
+                            // Obtener las salas disponibles
+                            $sql = $conexion->prepare("SELECT * FROM sala WHERE estadoSala = 'Disponible'");
+                            $sql->execute();
+                            $result = $sql->get_result();
+                            ?>
+
+                            <!-- Select con las opciones de salas disponibles -->
+                            <select class="form-select" name="sala" required>
+                                <option selected>Seleccione la sala</option>
+                                <?php while ($datos = $result->fetch_object()) { ?>
+                                    <option value="<?= $datos->id_Sala ?>"><?= $datos->nombreSala ?></option>
+                                <?php } ?>
                             </select>
                         </div>
 
@@ -117,7 +132,7 @@ if (empty($_SESSION["id"])) {
                                 ?>
                             </select>
                         </div>
-                        
+
                         <div class="mb-2">
                             <label class="form-label">Tipo plan: </label>
                             <select class="form-select" name="cbPlan" required>
@@ -133,8 +148,9 @@ if (empty($_SESSION["id"])) {
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary" value="ok" name="btnRegistrarReservacion">Crear reservación</button>
-                            <a class="btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
+                            <button type="submit" class="btn btn-success" value="ok"
+                                name="btnRegistrarReservacion">Crear reservación</button>
+                            <a class="btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
                         </div>
 
                     </form>
@@ -213,7 +229,9 @@ if (empty($_SESSION["id"])) {
         <p>Funeraria La Esperanza &copy; 2024 | Todos los derechos reservados</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 

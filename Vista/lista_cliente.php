@@ -70,7 +70,7 @@ if (empty($_SESSION["id"])) {
                     </div>
                     <div style="max-height: 500px; overflow-y: auto;">
                     <table class="table">
-                        <thead class="text-center">
+                        <thead class="text-left">
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
