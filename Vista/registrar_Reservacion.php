@@ -24,7 +24,7 @@ if (empty($_SESSION["id"])) {
 <body class="body-registro">
     <!-- Encabezado con logo y barra de navegación -->
     <header class="bg-dark text-white p-3">
-        <div  class="container">
+        <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="h3">
                     <a class="nav-link text-white" href="./principal.php">Funeraria La Esperanza</a>
@@ -61,7 +61,7 @@ if (empty($_SESSION["id"])) {
 
     <div class="container-fluid">
 
-        <div  class="row">
+        <div class="row">
 
             <div div class="col-md-7 pt-5 pe-2">
                 <div class="card p-3 m-2">
@@ -69,12 +69,13 @@ if (empty($_SESSION["id"])) {
                         <h2 class="text-center">Reservaciones</h2>
                         <?php
                         include "../Modelo/conexion.php";
+                        include "../Controlador/reservacionControler.php";
                         ?>
                     </div>
                     <form class="m-2 p-2" method="POST" action="">
                         <div class="mb-2">
                             <label class="form-label">Cliente: </label>
-                            <select class="form-select" name="cbCliente" required>
+                            <select class="form-select" name="cbCliente" required id="clienteSelect" required onchange="updateCliente()">
                                 <option selected>Seleccione al cliente</option>
                                 <?php
                                 include "./Modelo/conexion.php";
@@ -83,12 +84,17 @@ if (empty($_SESSION["id"])) {
                                     echo "<option value='" . $datos->id_Cliente . "'>" . $datos->nombre_completo . "</option>";
                                 }
                                 ?>
+
                             </select>
                         </div>
+                        <input type="hidden" id="clienteId" name="clienteId">
 
-                        <div class=" mb-2">
+                        <div class="mb-2">
                             <label class="form-label">Fecha reservación: </label>
-                            <input type="date" class="form-control" name="fechaR" id="fechaR" required disabled>
+                            <?php
+                            $fechaActual = date("Y-m-d");
+                            ?>
+                            <input type="date" class="form-control" name="fechaR" value="<?php echo $fechaActual; ?>" required>
                         </div>
 
                         <div class=" mb-2">
@@ -101,27 +107,24 @@ if (empty($_SESSION["id"])) {
                         </div>
                         <div class="mb-2">
                             <label class="form-label">Sala: </label>
-                            <?php
-                            include "../Modelo/conexion.php";
 
-                            // Obtener las salas disponibles
-                            $sql = $conexion->prepare("SELECT * FROM sala WHERE estadoSala = 'Disponible'");
-                            $sql->execute();
-                            $result = $sql->get_result();
-                            ?>
-
-                            <!-- Select con las opciones de salas disponibles -->
-                            <select class="form-select" name="sala" required>
+                            <select class="form-select" name="sala" id="salaSelect" required onchange="updateSala()">
                                 <option selected>Seleccione la sala</option>
-                                <?php while ($datos = $result->fetch_object()) { ?>
-                                    <option value="<?= $datos->id_Sala ?>"><?= $datos->nombreSala ?></option>
-                                <?php } ?>
+                                <?php
+                                include "./Modelo/conexion.php";
+                                $sql = $conexion->query("SELECT id_Sala, nombreSala FROM sala");
+                                while ($datos = $sql->fetch_object()) {
+                                    echo "<option value='" . $datos->id_Sala . "'>" . $datos->nombreSala . "</option>";
+                                }
+                                ?>
+
                             </select>
                         </div>
+                        <input type="hidden" id="salaId" name="salaId">
 
                         <div class="mb-2">
                             <label class="form-label">Paquete: </label>
-                            <select class="form-select" name="cbPaquete" required>
+                            <select class="form-select" name="cbPaquete" required id="cbPaquete" onchange="updatePaqueteId()">
                                 <option selected>Seleccione el paquete</option>
                                 <?php
                                 include "./Modelo/conexion.php";
@@ -132,10 +135,11 @@ if (empty($_SESSION["id"])) {
                                 ?>
                             </select>
                         </div>
+                        <input type="hidden" id="planPaquete" name="planPaquete">
 
                         <div class="mb-2">
                             <label class="form-label">Tipo plan: </label>
-                            <select class="form-select" name="cbPlan" required>
+                            <select class="form-select" name="cbPlan" id="cbPlan" required onchange="updatePlanId()">
                                 <option selected>Seleccione el plan</option>
                                 <?php
                                 include "./Modelo/conexion.php";
@@ -146,6 +150,7 @@ if (empty($_SESSION["id"])) {
                                 ?>
                             </select>
                         </div>
+                        <input type="hidden" id="planId" name="planId">
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit" class="btn btn-success" value="ok"
@@ -236,6 +241,7 @@ if (empty($_SESSION["id"])) {
     <script src="https://kit.fontawesome.com/80d40214cc.js" crossorigin="anonymous"></script>
 
     <script src="../Vista/JS/script_reservacion.js"></script>
+    <script src="../Vista/JS/ids.js"></script>
 </body>
 
 </html>
