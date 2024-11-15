@@ -38,7 +38,7 @@ if (empty($_SESSION["id"])) {
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <?php
-                                    echo $_SESSION["nombre"] . " - ". $_SESSION["correo"];
+                                    echo $_SESSION["nombre"] . " - " . $_SESSION["correo"];
                                     ?>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -53,7 +53,7 @@ if (empty($_SESSION["id"])) {
     </header>
 
     <!-- Contenedor principal que mantendrá el contenido expandido -->
-    <div  style="min-height: 70vh;" class="container-flex">
+    <div style="min-height: 70vh;" class="container-flex">
         <!-- Sección principal del Dashboard -->
         <section id="dashboard" class="container my-4">
             <h2 class="mb-4">Dashboard - Funeraria La Esperanza</h2>
@@ -62,8 +62,14 @@ if (empty($_SESSION["id"])) {
                 <div class="col-md-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Reservas Activas</h5>
-                            <p class="card-text display-4"></p>
+                            <h5 class="card-title">Reservas registradas</h5>
+                            <?php
+                            include "../Modelo/conexion.php";
+                            $sql = $conexion->query("select count(*) as TotalRes from reservaciones");
+                            if ($datos = $sql->fetch_object()) { ?>
+                                <p class="card-text display-4"><?php echo $datos->TotalRes;?></p>
+                            <?php }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -79,7 +85,7 @@ if (empty($_SESSION["id"])) {
                                 <p class="card-text display-4"><?php echo $datos->total_Salas; ?></p>
                             <?php }
                             ?>
-                             
+
                         </div>
                     </div>
                 </div>
@@ -106,7 +112,7 @@ if (empty($_SESSION["id"])) {
                             <p class="card-text display-4"></p>
                         </div>
                     </div>
-                </div>            
+                </div>
                 <div class="col-md-3">
                     <div class="card text-center">
                         <div class="card-body">
