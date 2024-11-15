@@ -62,6 +62,7 @@ if (empty($_SESSION["id"])) {
                         <h2>Lista de reservaciones </h2>
                         <?php
                         include "../Modelo/conexion.php";
+                        include "../Controlador/eliminarReservacion.php";
                         ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a class=" btn btn-success" href="./registrar_Reservacion.php" role="button">Crear reservación</a>
@@ -98,8 +99,8 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->id_PlanPago ?></td>
                                     
                                     <td>
-                                        <a class="btn btn-warning" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                                        <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a>
+                                        <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-danger" href="./lista_reservacion.php?id=<?= $datos->id_Reservacion ?>"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
                                 </tr>
