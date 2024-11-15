@@ -99,7 +99,7 @@ if (empty($_SESSION["id"])) {
                                     <td><?= $datos->id_PlanPago ?></td>
                                     
                                     <td>
-                                        <a class="btn btn-warning" href=""><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-warning" href="./modificar_reservacion.php?id=<?= $datos->id_Reservacion ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a class="btn btn-danger" href="./lista_reservacion.php?id=<?= $datos->id_Reservacion ?>"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>

@@ -22,3 +22,4 @@ function updateCliente() {
     var selectedClienteId = selectElement.value;
     document.getElementById("clienteId").value = selectedClienteId; // ID del input oculto
 }
+
