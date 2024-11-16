@@ -18,6 +18,7 @@ if (empty($_SESSION["id"])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="./CSS/footer.css">
+    <link rel="icon" href="./IMG/ataud.ico" type="image/x-icon">
 
 </head>
 

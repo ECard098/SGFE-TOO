@@ -16,6 +16,7 @@ if (empty($_SESSION["id"])) {
     <link rel="stylesheet" href="../Vista/CSS/styleRegistro.css">
     <script src="./JS/listaEliminar.js"></script>
     <link rel="stylesheet" href="./CSS/footer.css">
+    <link rel="icon" href="./IMG/ataud.ico" type="image/x-icon">
 
 </head>
 
