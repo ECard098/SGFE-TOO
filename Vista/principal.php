@@ -113,7 +113,7 @@ if (empty($_SESSION["id"])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 pt-2">
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Reportes Generados</h5>
