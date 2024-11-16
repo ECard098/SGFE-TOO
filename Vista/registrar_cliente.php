@@ -24,7 +24,7 @@ if (empty($_SESSION["id"])) {
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="h3">
-                    <a class="nav-link text-white" href="../index.php">Funeraria La Esperanza</a>
+                    <a class="nav-link text-white" href="./principal.php">Funeraria La Esperanza</a>
                 </h1>
                 <nav>
                     <ul class="nav">
