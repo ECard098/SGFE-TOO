@@ -10,7 +10,7 @@ if (empty($_SESSION["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expediente</title>
+    <title>Pagos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../Vista/CSS/footer.css">
     <script src="./JS/listaEliminar.js"></script>
@@ -74,19 +74,23 @@ if (empty($_SESSION["id"])) {
                                     <th scope="col">ID Cliente</th>
                                     <th scope="col">Nombre Cliente</th>
                                     <th scope="col">Monto del Pago</th>
+
+
                                     
                                 </tr>
                             </thead>
                             <tbody class="p-1">
                                 <?php
                                 include "../Modelo/conexion.php";
-                                $sql = $conexion->query("SELECT  pagos.idPago AS pago_id, cliente.id_Cliente AS cliente_id, cliente.nombre AS cliente_nombre, pagos.monto AS pagos_monto FROM pagos INNER JOIN cliente ON pagos.IdCliente = cliente.id_Cliente");
+                                $sql = $conexion->query("SELECT r.id_Reservacion AS pago_id, r.id_Cliente AS cliente_id, CONCAT(c.nombre,' ',c.apellido) AS cliente_nombre, p.tipoPaquete AS paquete, p.precio AS pagos_monto, pp.tipoPago AS metodoPago FROM reservaciones r JOIN cliente c ON r.id_Cliente = c.id_Cliente JOIN paquete p ON r.id_Paquete = p.id_Paquete JOIN planPago pp ON r.id_PlanPago = pp.id_PlanPago");
                                 while ($datos = $sql->fetch_Object()) { ?>
                                     <tr>
                                         <th><?= $datos->pago_id ?></th>
                                         <td><?= $datos->cliente_id ?></td>
                                         <td><?= $datos->cliente_nombre ?></td>
                                         <td>$ <?= $datos->pagos_monto ?></td>
+                                       
+                                        
                                         
                                     </tr>
                                 <?php }
