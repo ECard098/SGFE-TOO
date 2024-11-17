@@ -30,7 +30,7 @@ if (empty($_SESSION["id"])) {
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="./lista_sala.php" class="nav-link text-white">Salas</a></li>
                         <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
+                        <li class="nav-item"><a href="./pagos.php" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a>
                         </li>
                         <li class="nav-item"><a href="./lista_expediente.php" class="nav-link text-white">Expediente</a>
@@ -109,8 +109,15 @@ if (empty($_SESSION["id"])) {
                 <div class="col-md-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Pagos Recientes</h5>
-                            <p class="card-text display-4"></p>
+                            <h5 class="card-title">Pagos realizados</h5>
+                            
+                            <?php
+                            include "../Modelo/conexion.php";
+                            $sql = $conexion->query("select count(*) as TotalPagos from pagos");
+                            if ($datos = $sql->fetch_object()) { ?>
+                                <p class="card-text display-4"><?php echo $datos->TotalPagos;?></p>
+                            <?php }
+                            ?>
                         </div>
                     </div>
                 </div>

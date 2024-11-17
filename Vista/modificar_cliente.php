@@ -38,7 +38,7 @@ $sql = $conexion->query("select * from cliente where id_Cliente = $id");
                         <li class="nav-item"><a href="../Vista/lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Salas</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Reservas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
+                        <li class="nav-item"><a href="./pagos.php" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="#" class="nav-link text-white">Expediente</a>
                         </li>

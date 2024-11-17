@@ -31,7 +31,7 @@ if (empty($_SESSION["id"])) {
                         <li class="nav-item"><a href="./lista_cliente.php" class="nav-link text-white">Clientes</a></li>
                         <li class="nav-item"><a href="./lista_sala.php" class="nav-link text-white">Salas</a></li>
                         <li class="nav-item"><a href="./lista_reservacion.php" class="nav-link text-white">Reservas</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Pagos</a></li>
+                        <li class="nav-item"><a href="./pagos.php" class="nav-link text-white">Pagos</a></li>
                         <li class="nav-item"><a href="./reportes.php" class="nav-link text-white">Reportes</a></li>
                         <li class="nav-item"><a href="./lista_expediente.php" class="nav-link text-white">Expediente</a>
                         </li>
@@ -108,7 +108,7 @@ if (empty($_SESSION["id"])) {
                         </table>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a class=" btn btn-secondary" href="./principal.php" role="button">Volver al inicio</a>
+                        <a class=" btn btn-dark" href="./principal.php" role="button">Volver al inicio</a>
                     </div>
 
                 </div>
